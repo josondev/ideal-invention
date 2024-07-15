@@ -97,7 +97,7 @@ else:
           try:
             chatbot = ChatBot.website_chat(ans)  # Pass the link
             ans = input("Your question here:")
-            response = chatbot.chat(ans)        #fails for chromium based applications idk y  :(
+            response = chatbot.chat(ans)        
             print(response.response)
             break
           except:
