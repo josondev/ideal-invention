@@ -17,7 +17,7 @@ int main()
 	        return 1;
 	    }
 
-    printf("Enter %d elements one by one:\n", arrsize);
+    printf("Enter %d elements one by one:", arrsize);
     for (i = 0; i < arrsize; ++i) {
         printf("Enter element %d: ", i);
         scanf("%d", &arr[i]);
