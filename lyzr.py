@@ -12,9 +12,9 @@ def main(key):
     ans=input('Text-to-speech or Transcribe or Text-to-notes:')
     Voice(ans)
   elif(ans=='summariser'):
-    Summariser(ans)
+    Summariser()
   elif(ans=='generator'):
-    Generator(ans,key)
+    Generator()
   else:
     from google.colab import files
     import os
