@@ -250,4 +250,5 @@ def Search_webpage(ans):
         print(f'An error occurred: {e}')
 
 if(__name__=='__main__'):
-  main(input('enter your api key:'))  #main function call
+  key=input('enter your api key:')
+  main(key)  #main function call
