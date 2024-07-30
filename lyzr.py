@@ -10,11 +10,11 @@ def main(key):
   ans=input('voice or search or chat or generator or summariser:')
   if(ans=='voice'):
     ans=input('Text-to-speech or Transcribe or Text-to-notes:')
-    Voice(ans)
+    Voice(ans,key)
   elif(ans=='summariser'):
-    Summariser()
+    Summariser(key)
   elif(ans=='generator'):
-    Generator()
+    Generator(key)
   else:
     from google.colab import files
     import os
@@ -34,7 +34,7 @@ def main(key):
 
 #sub function definitions start here:
 
-def Voice(ans):
+def Voice(ans,key):
   from lyzr import VoiceBot
   vb=VoiceBot(api_key=key)
   if(ans=='Text-to-speech'):   
@@ -47,13 +47,13 @@ def Voice(ans):
   else:
     print("enter a valid operation.")
 
-def Summariser():
+def Summariser(key):
   from lyzr import Summarizer
   summarizer = Summarizer(api_key=key)
   ans=input('enter the text to be converted to a summary:')
   print(summarizer.summarize(ans))
 
-def Generator():
+def Generator(key):
   from lyzr import Generator
   generator=Generator(api_key=key)
   ans=input('enter the topic to be expanded:')
