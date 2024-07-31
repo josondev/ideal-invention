@@ -14,11 +14,11 @@ class MAIN:
   def main(self,ans,key):
     if(ans=='voice'):
       ans=input('Text-to-speech or Transcribe or Text-to-notes:')
-      Voice(ans)
+      Voice(ans,key)
     elif(ans=='summariser'):
       Summariser(ans)
     elif(ans=='generator'):
-      Generator(ans,key)
+      Generator(key)
     else:
       from google.colab import files
       import os
@@ -38,7 +38,7 @@ class MAIN:
 
 #sub function definitions start here:
 
-def Voice(ans):
+def Voice(ans,key):
   from lyzr import VoiceBot
   vb=VoiceBot(api_key=key)
   if(ans=='Text-to-speech'):
@@ -51,13 +51,13 @@ def Voice(ans):
   else:
     print("enter a valid operation.")
 
-def Summariser():
+def Summariser(key):
   from lyzr import Summarizer
   summarizer = Summarizer(api_key=key)
   ans=input('enter the text to be converted to a summary:')
   print(summarizer.summarize(ans))
 
-def Generator():
+def Generator(key):
   from lyzr import Generator
   generator=Generator(api_key=key)
   ans=input('enter the topic to be expanded:')
@@ -100,9 +100,9 @@ def Chat_pdf():
       try:
           uploaded = files.upload()  # Returns a dictionary
           filename = next(iter(uploaded))
-          search_agent = ChatBot.pdf_chat(input_files=[filename])  # Create SearchAgent from PDF
+          chatbot = ChatBot.pdf_chat(input_files=[filename])  # Create SearchAgent from PDF
           ans = input("Your question here:")
-          response = search_agent.query(ans)  # Use search method
+          response = chatbot.chat(ans)  # Use search method
           print(response)
           break
       except Exception as e:  # Catch any exception and assign it to 'e'
@@ -115,9 +115,9 @@ def Chat_text():
       try:
           uploaded = files.upload()  # Returns a dictionary
           filename = next(iter(uploaded))
-          search_agent = ChatBot.txt_chat(input_files=[filename])  # Create SearchAgent from text files
+          chatbot = ChatBot.txt_chat(input_files=[filename])  # Create SearchAgent from text files
           ans = input("Your question here:")
-          response = search_agent.query(ans)  # Use search method
+          response = chatbot.chat(ans)  # Use chat method
           print(response)
           break
       except Exception as e:  # Catch any exception and assign it to 'e'
@@ -130,9 +130,9 @@ def Chat_word():
       try:
           uploaded = files.upload()  # Returns a dictionary
           filename = next(iter(uploaded))
-          search_agent = ChatBot.docx_chat(input_files=[filename])  # Create SearchAgent from word document
+          chatbot = ChatBot.docx_chat(input_files=[filename])  # Create SearchAgent from word document
           ans = input("Your question here:")
-          response = search_agent.query(ans)  # Use search method
+          response = chatbot.chat(ans)  # Use chat method
           print(response)
           break
       except Exception as e:  # Catch any exception and assign it to 'e'
@@ -166,7 +166,7 @@ def Chat_webpage(ans):
     try:
       chatbot=ChatBot.webpage_chat(urls=[ans])
       ans=input('your question here:')
-      result=chatbot.query(ans)
+      result=chatbot.chat(ans)
       print(result)
       break
     except Exception as e:  # Catch any exception and assign it to 'e'
