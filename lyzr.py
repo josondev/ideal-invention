@@ -4,40 +4,44 @@
 pip install youtube_transcripts_api,pip install nest_asyncio(to prevent running of two loops incase of website,webpage and youtube videos)
 !sudo apt-get install libwoff2dec-bin libgstreamer1.0-0 libgstreamer-plugins-base1.0-0 libharfbuzz-icu0(missing libraries in playwright)'''
 
-#main function:
+#main class:
+class MAIN:
 
-def main(key):
-  ans=input('voice or search or chat or generator or summariser:')
-  if(ans=='voice'):
-    ans=input('Text-to-speech or Transcribe or Text-to-notes:')
-    Voice(ans,key)
-  elif(ans=='summariser'):
-    Summariser(key)
-  elif(ans=='generator'):
-    Generator(key)
-  else:
-    from google.colab import files
-    import os
-    import nest_asyncio  #The error message "RuntimeError: This event loop is already running" usually arises in asynchronous programming when you try to start a new event loop while another is already active'''
-    from lyzr import ChatBot
-    from lyzr import SearchAgent #Chatbot from lyzr      
-    nest_asyncio.apply()
-    os.environ['OPENAI_API_KEY'] = key
-    if(ans=='chat'):
-      ans=input('word document or pdf or youtube video or website or webpage or text file:')
-      Chat(ans)
-    elif(ans=='search'):
-      ans=input('word document or pdf or youtube video or website or webpage or text file:')
-      Search(ans)
+  def __init__(self,ans,key):
+    self.ans=ans
+    self.key=key
+
+  def main(self,ans,key):
+    if(ans=='voice'):
+      ans=input('Text-to-speech or Transcribe or Text-to-notes:')
+      Voice(ans)
+    elif(ans=='summariser'):
+      Summariser(ans)
+    elif(ans=='generator'):
+      Generator(ans,key)
     else:
-        print("enter a valid operation:")
+      from google.colab import files
+      import os
+      import nest_asyncio  #The error message "RuntimeError: This event loop is already running" usually arises in asynchronous programming when you try to start a new event loop while another is already active'''
+      from lyzr import ChatBot
+      from lyzr import SearchAgent #Chatbot from lyzr
+      nest_asyncio.apply()
+      os.environ['OPENAI_API_KEY'] = key
+      if(ans=='chat'):
+        ans=input('word document or pdf or youtube video or website or webpage or text file:')
+        Chat(ans)
+      elif(ans=='search'):
+        ans=input('word document or pdf or youtube video or website or webpage or text file:')
+        Search(ans)
+      else:
+          print("enter a valid operation:")
 
 #sub function definitions start here:
 
-def Voice(ans,key):
+def Voice(ans):
   from lyzr import VoiceBot
   vb=VoiceBot(api_key=key)
-  if(ans=='Text-to-speech'):   
+  if(ans=='Text-to-speech'):
     vb.text_to_speech(input('enter the text to be converted to speech:'))
     print('Successful execution.Please check the files.')
   elif(ans=='Text-to-notes'):
@@ -47,13 +51,13 @@ def Voice(ans,key):
   else:
     print("enter a valid operation.")
 
-def Summariser(key):
+def Summariser():
   from lyzr import Summarizer
   summarizer = Summarizer(api_key=key)
   ans=input('enter the text to be converted to a summary:')
   print(summarizer.summarize(ans))
 
-def Generator(key):
+def Generator():
   from lyzr import Generator
   generator=Generator(api_key=key)
   ans=input('enter the topic to be expanded:')
@@ -87,7 +91,7 @@ def Search(ans):
       elif(ans=='website'):
         Search_website(input('enter the website link:'))
       elif(ans=="webpage"):
-        Search_webpage(input('enter the webpage link:'))  
+        Search_webpage(input('enter the webpage link:'))
 
 def Chat_pdf():
   from google.colab import files
@@ -136,8 +140,8 @@ def Chat_word():
 
 def Chat_youtube(ans):
   while 1:
-    try: 
-      chatbot = ChatBot.youtube_chat(urls=[ans])  
+    try:
+      chatbot = ChatBot.youtube_chat(urls=[ans])
       ans = input("Your question here:")
       response = chatbot.chat(ans)
       print(response.response)
@@ -148,7 +152,7 @@ def Chat_youtube(ans):
 def Chat_website(ans):
     while 1:
       try:
-        chatbot = ChatBot.website_chat(urls=[ans])  
+        chatbot = ChatBot.website_chat(urls=[ans])
         ans = input("Your question here:")
         response = chatbot.chat(ans)
         print(response.response)
@@ -211,19 +215,19 @@ def Search_word():
       print(response.response)
       break
     except Exception as e:  # Catch any exception and assign it to 'e'
-      print(f'An error occurred: {e}')    
+      print(f'An error occurred: {e}')
 
 def Search_youtube(ans):
     from lyzr import SearchAgent
     while 1:
       try:
-        search_agent = SearchAgent.add_youtube(ans)  
+        search_agent = SearchAgent.add_youtube(ans)
         ans = input("Your question here:")
         response = search_agent.query(ans)
         print(response.response)
         break
       except Exception as e:  # Catch any exception and assign it to 'e'
-        print(f'An error occurred: {e}')   
+        print(f'An error occurred: {e}')
 
 def Search_website(ans):
     from lyzr import SearchAgent
@@ -250,5 +254,6 @@ def Search_webpage(ans):
         print(f'An error occurred: {e}')
 
 if(__name__=='__main__'):
+  ans=input('voice or search or chat or generator or summariser:')
   key=input('enter your api key:')
-  main(key)  #main function call
+  MAIN(ans,key).main(ans,key)
