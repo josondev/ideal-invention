@@ -16,7 +16,7 @@ class MAIN:
       ans=input('Text-to-speech or Transcribe or Text-to-notes:')
       Voice(ans,key)
     elif(ans=='summariser'):
-      Summariser(ans)
+      Summariser(key)
     elif(ans=='generator'):
       Generator(key)
     else:
