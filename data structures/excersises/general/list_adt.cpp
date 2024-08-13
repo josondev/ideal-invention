@@ -128,14 +128,14 @@ int main()
 int list::insertbeg(int element)
 
     {
-        //check list is empty
+        //failed to insert case
         
         if(cur==size-1)
         {
             return 0;
         }
 
-        //
+        //fresh insertion
 
         else if(cur==-1)
         {
@@ -143,6 +143,9 @@ int list::insertbeg(int element)
             arr[0]=element;
             return 1;
         }
+        
+        //pushing the elements forward
+
         else
         {
             for(int i=cur;i>=0;i--)
