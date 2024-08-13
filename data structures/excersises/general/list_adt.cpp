@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #define size 5
 
+#cur the current index of the array
+
 using namespace std;
 
 class list
