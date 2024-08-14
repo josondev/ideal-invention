@@ -7,11 +7,11 @@ class MAIN:
   def main(self,ans,key):
     if(ans=='voice'):
       ans=input('Text-to-speech or Transcribe or Text-to-notes:')
-      Voice(ans)
+      Voice(ans,key)
     elif(ans=='summariser'):
-      Summariser(ans)
+      Summariser(key)
     elif(ans=='generator'):
-      Generator(ans,key)
+      Generator(key)
     else:
       from google.colab import files
       import os
