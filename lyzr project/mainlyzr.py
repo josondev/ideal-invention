@@ -28,3 +28,8 @@ class MAIN:
         Search(ans)
       else:
           print("enter a valid operation:")
+        
+if(__name__=='__main__'):
+  ans=input('voice or search or chat or generator or summariser:')
+  key=input('enter your api key:')
+  MAIN(ans,key).main(ans,key)        
