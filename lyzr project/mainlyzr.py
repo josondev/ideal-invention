@@ -1,5 +1,11 @@
-class MAIN:
+from google.colab import files
+import os
+import nest_asyncio  #The error message "RuntimeError: This event loop is already running" usually arises in asynchronous programming when you try to start a new event loop while another is already active'''
+from lyzr import ChatBot
+from lyzr import SearchAgent #Chatbot from lyzr
 
+class MAIN:
+  
   def __init__(self,ans,key):
     self.ans=ans
     self.key=key
@@ -13,11 +19,6 @@ class MAIN:
     elif(ans=='generator'):
       Generator(key)
     else:
-      from google.colab import files
-      import os
-      import nest_asyncio  #The error message "RuntimeError: This event loop is already running" usually arises in asynchronous programming when you try to start a new event loop while another is already active'''
-      from lyzr import ChatBot
-      from lyzr import SearchAgent #Chatbot from lyzr
       nest_asyncio.apply()
       os.environ['OPENAI_API_KEY'] = key
       if(ans=='chat'):
