@@ -97,14 +97,19 @@ class List
 
         void InsertPosition(int num,int position)
         {
-            if(position==0) 
+            if(position==0 || head==nullptr) 
             {
                 InsertBegin(num);
                 return;
             }
             Node *newnode=CreateNode();
             newnode->data=num;
-            Node *temp=head;
+            Node *temp=head;                                              //temporary pointer to traverse the list
+            if((head==nullptr && position>0)|| position<0)                                 //empty list checking 
+            {
+                printf("invalid position.\n");
+                return;
+            }
             // to track the given position.If head occurs before the given index then the index does not exist
             for(int i=0;i<position-1;i++)
             {
