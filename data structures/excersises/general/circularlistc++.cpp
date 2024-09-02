@@ -31,7 +31,7 @@ class List
             delete ptr;
         }
     public:
-        //constructor
+         //constructor
         List()
         {
             head=nullptr;
@@ -125,7 +125,7 @@ class List
             //once when we reach the before position we start inserting the node
             newnode->next=temp->next;
             temp->next=newnode;
-            cout<<num<<" inserted successfully at positionn "<<position<<endl;
+            cout<<num<<" inserted successfully at position "<<position<<'.'<<endl;
             return;
         }
  
@@ -243,13 +243,13 @@ class List
             {
                 if(temp->data==num)
                 {
-                    cout<<"\n%d found in index %d.\n",num,p;
+                    cout<<num<<" found in index "<<p<<endl;
                     return;
                 }                
                 temp=temp->next;
                 p++;
             }
-            cout<<"\n%d not found in the list.\n",num;
+            cout<<num<<" not found in the list.";
             return;
         }
         
@@ -333,7 +333,6 @@ int main()
 
             case 9:
                 return 0;
-
             }
         }
         
