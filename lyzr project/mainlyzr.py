@@ -31,6 +31,19 @@ class MAIN:
           print("enter a valid operation:")
         
 if(__name__=='__main__'):
-  ans=input('voice or search or chat or generator or summariser:')
-  key=input('enter your api key:')
-  MAIN(ans,key).main(ans,key)        
+  while(1):
+    try:
+      ans=input('voice or search or chat or generator or summariser:')
+      key=input('enter your api key:')
+      MAIN(ans,key).main(ans,key)       
+    except exception as e:
+      print("the following exception has occured:",e)
+    finally:
+      print("do you want to continue?:")
+      ans=input("enter yes or no:")
+      if(ans=="no"):
+        print("exiting program.")
+        break
+    
+    
+      
