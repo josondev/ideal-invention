@@ -8,8 +8,14 @@ class MAIN:
   
   def __init__(self,ans,key):
     self.ans=ans
-    self.key=key
-    
+    self.__key=key
+
+  def getKey(self):
+    return(self.__key)
+
+  def SetKey(self,key):
+    self.__key=key
+
   def main(self,ans,key):
     if(ans=='voice'):
       ans=input('Text-to-speech or Transcribe or Text-to-notes:')
@@ -35,7 +41,9 @@ if(__name__=='__main__'):
     try:
       ans=input('voice or search or chat or generator or summariser:')
       key=input('enter your api key:')
-      MAIN(ans,key).main(ans,key)       
+      obj=MAIN(ans,key)
+      obj.SetKey(key)
+      obj.main(ans,key)       
     except Exception as e:
       print("the following exception has occured:",e)
     finally:
