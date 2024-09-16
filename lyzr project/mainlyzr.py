@@ -9,17 +9,17 @@ class MAIN:
     def __init__(self, ans, key):
         self.ans = ans
         self.__key = key
+        
+    def getkey(self):
+        return(self.__key)
 
-    def getKey(self):
-        return self.__key
-
-    def setKey(self, key):
-        self.__key = key
-
+    def setter(self,key):
+        self.__key=key
+        
     def main(self):
         if self.ans == 'voice':
             ans = input('Text-to-speech or Transcribe or Text-to-notes: ')
-            Voice(ans, self.__key)
+            Voice(ans,self.__key)
         elif self.ans == 'summariser':
             Summariser(self.__key)
         elif self.ans == 'generator':
@@ -39,9 +39,9 @@ if __name__ == '__main__':
     while True:
         try:
             ans = input('voice or search or chat or generator or summariser: ')
-            key = input('Enter your API key: ')
+            key = input('Enter your API key:')
             obj = MAIN(ans, key)
-            obj.setKey(key)
+            obj.setter(key)
             obj.main()
         except Exception as e:
             print("The following exception has occurred:", e)
@@ -50,6 +50,3 @@ if __name__ == '__main__':
             if continue_program.lower() == "no":
                 print("Exiting program.")
                 break
-
-    
-      
