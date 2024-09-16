@@ -1,7 +1,7 @@
 import os
 import nest_asyncio  # Ensure this is applied before asynchronous operations
 from lyzr import ChatBot, SearchAgent  # Assuming these are correct imports
-#export OPENAI_API_KEY='your_secret_api_key_here' (must to keep the key safe)
+#%env OPENAI_API_KEY=key(must to keep the key safe)
 nest_asyncio.apply()# Apply nest_asyncio once at the start
 
 class MAIN:
@@ -34,12 +34,10 @@ if __name__ == '__main__':
     while True:
         try:
             ans = input('voice or search or chat or generator or summariser: ')
-            key = input('Enter your API key:')
-            obj = MAIN(ans, key)
+            obj = MAIN(ans)
             obj.main()
         except Exception as e:
             print("The following exception has occurred:", e)
-        finally:
             continue_program = input("Do you want to continue? (yes or no): ")
             if continue_program.lower() == "no":
                 print("Exiting program.")
