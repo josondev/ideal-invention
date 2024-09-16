@@ -1,15 +1,16 @@
 import os
 import nest_asyncio  # Ensure this is applied before asynchronous operations
 from lyzr import ChatBot, SearchAgent  # Assuming these are correct imports
-
-# Apply nest_asyncio once at the start
-nest_asyncio.apply()
+#export OPENAI_API_KEY='your_secret_api_key_here' (must to keep the key safe)
+nest_asyncio.apply()# Apply nest_asyncio once at the start
 
 class MAIN:
-    def __init__(self, ans, key):
+    def __init__(self, ans):
         self.ans = ans
-        self.key = key
-        
+        self.key = os.getenv("OPENAI_API_KEY")
+        if not self.key:
+            raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
+            
     def main(self):
         if self.ans == 'voice':
             ans = input('Text-to-speech or Transcribe or Text-to-notes: ')
