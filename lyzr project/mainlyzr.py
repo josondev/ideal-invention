@@ -1,6 +1,6 @@
 '''from google.colab import files
 import os
-import nest_asyncio  #The error message "RuntimeError: This event loop is already running" usually arises in asynchronous programming when you try to start a new event loop while another is already active that is one instruction must not run when execution of another is happening'''
+import nest_asyncio  #The error message "RuntimeError: This event loop is already running" usually arises in asynchronous programming when you try to start a new event loop while another is already active that is one instruction must not run when execution of another is happening
 from lyzr import ChatBot
 from lyzr import SearchAgent #Chatbot from lyzr
 
